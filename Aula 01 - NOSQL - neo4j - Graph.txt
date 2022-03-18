@@ -1,0 +1,33 @@
+CREATE (:Client {name : "Bob Esponja"}, age: 28, hobbies: ['Caça agua-viva, Comer Hamburgues']})
+
+MATCH (bob_esponja) RETURN bob_esponja;
+
+CREATE (:CLient {name: "Lula Molusco", age: 30, hobbies: ['Tocar clarinete']}) -[:Bloqueado]->(:Cliente {name: 'Patrick', hobbies: ['Caçar agua-viva]})
+
+MATCH (todos) RETUNR (todos);
+
+CREATE (:Object)
+
+MATCH (todos) RETUNR (todos);
+
+MATCH (lula:Client {name: "Lula Molusco"}), (patrick:Client {name: "Patrick}) CREATE (lula)-[:Bloqueado]->(patrick)
+
+MATCH (todos) RETURN todos;
+
+MATCH (lula:CLient {name: "Lula Molusco"})-[relaciona:Bloqueado]-() DELETE relaciona
+
+MATCH (todos) RETURN todos;
+
+MATCH (lula:Client {name: "Lula Molusco"}
+
+MATCH (todos) RETURN todos;
+
+MATCH (patrick:Client {name: "Patrick"}) SET patrick.hobbies = ['Caçar agua viva'];
+
+MATCH (todos) RETURN todos;
+
+MATCH(patrick: Client {name: "Patrick"}) SET patrick:Client_Premium
+
+MATCH (todos) RETURN todos;
+
+

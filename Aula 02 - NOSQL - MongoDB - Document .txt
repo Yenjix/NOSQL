@@ -1,0 +1,29 @@
+# pode-se usar o ROBO 3T tbm, compilador, melhor q usar o terminal
+# robomongo.org
+
+# instalação do docker 
+# docs.docker.com/compose/
+# docs.docker.com/compose/compose-file/
+# pelo SHELL digitar:
+
+vi docker-compose.yml
+version '3.8'
+services:
+	db:
+	  image: mongo 		# hub.docker.com
+	  container_name: db
+	  restart: always       
+	  environment:
+		- MONG O_INITDB_ROOT_USERNAME=dio
+		- MONGO_INITDB_ROOT_PASSWORD=dio
+	  ports:
+	    - "27017:27017"
+	  volumes:
+	    - D:/pythonProject/NOSQL/Aula 02_dbdata:/data/db
+
+docker-compose up -d  #cria um docker
+docker container ps  #lista todos os containers rodando na maquina
+mongo --host 127.0.0.1:27017 -p dio -u dio
+show databases
+exit
+

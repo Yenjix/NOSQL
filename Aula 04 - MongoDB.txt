@@ -1,0 +1,69 @@
+#pode usar o programa Robot 3T
+#docs.mongodb.com/manual/tutorial/query-for-null-fields/
+mongo -host 127.0.01:27017 -u dio -p dio
+
+show databases;
+
+use fenda_biquini;
+
+db.createCollections("test", {capped: true, max: 2, size: 2});
+show collections;
+db.test.insertOne({"name": "teste 1"});
+db.test.find({});
+
+db.test.insertOne({"name": "teste 2"});
+db.test.find({});
+
+db.test.insertOne({"name": "teste 3"});
+db.test.find({});
+ 
+#como o limite era 2, ele deleta o teste 1 p poder guardar o teste 2 e 3
+
+db.test1.insertOne({"age": 10})
+db.test1.insertOne({"age": 10})
+db.test1.insertOne({"age": 10})
+
+db.test1.find({})
+
+db.test1.insertOne({"age": 10})
+db.test1.insertOne({"age": 10})
+db.test1.insertOne({"age": 10})
+
+db.test1.find({})
+
+db.clients.insert([{"name":"Patrick", "age": 38}, {"name": "Bob Esponja"}])
+
+db.clients.find({})
+
+db.clients.save({"name": "Lula Molusco", "age": 40}) #esse comando pode ser usado para ATUALIZAR, mas precisa saber o ID
+
+db.clients.find({})
+db.clients.update({"name" : "Bob Esponja"}, {$set :{"age": 41}}) #o recomendado é usar o comando UPDATE para ATUALIZAR
+
+db.clients.update({"age": 40}, {$set: {"age": 43}, {multi: true})
+
+db.clients.updateMany({"age": 43}, {$set: {"age": 55})
+
+db.clients.find({})
+db.clients.find({"age": 55}).limit(1)
+
+db.clients.insertOne({"name": "Patrick2", "age": 30})
+db.clients.find({"age": {$int: [30, 41]}})
+
+db.clients.find({$or: [{"name": "Patrick"}, {"age": 41}]})
+
+db.clients.find({"age": {$lt: 55}})
+
+db.clients.find({"age": {$lte: 30}}) # para incluir o intervalor só add 'e' -> lte
+
+db.clinets.find({})
+
+db.clients.deleteOne({"age": 55})
+db.clients.find({})
+
+db.clients.update({"name": "Bob Esponja"}, {"age": 55})
+
+db.clients.deleMany({"age": 55})
+
+
+

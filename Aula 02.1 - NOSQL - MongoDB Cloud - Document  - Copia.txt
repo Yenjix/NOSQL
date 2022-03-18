@@ -1,0 +1,4 @@
+# mongodb.com/try  usar a versao gratuita
+usa o terminal
+
+# tem o compilador online q da p ver a db que é o MongoDB Compass
