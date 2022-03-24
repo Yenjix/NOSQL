@@ -1,0 +1,59 @@
+# 24/03/2022
+# Criar uma conta no GCP (Google Cloud Platform), precisa ter cartao de credito
+# https://cloud.google.com/docs/overview
+# Fazer criar conta no: https://console.cloud.google.com/
+
+# Criar um Novo Projeto
+
+# 1. Criaçao de Alerta de Orçamento (Budget Notification)
+# 2. Habilitando APIs de Serviços
+# 3. Demonstração de Compute Engine
+
+# 1. Clicar em Faturamento > Orçamento e alertas > Criar orçamento; Estebelecer o limite e colocar os alertas qnd atingir determinada % do valor.
+
+# 2. Menu > Compute Engine > Instâncias de VM; Vc vai montar o computador q quer alocar
+# Pode se conectar pelo SSH ou pelo Cloud Shell
+# comandos: gcloud compute instances list  #vai mostrar as mesmas informaçoes do console.cloud.google.com na parte de Instâncias
+# $gcloud compute ssh (COLOCOAR O NOME DA MAQUINA e ZONA, NO CASO:) instancia-hadoop --zone=us-centrall-a
+# assim vc se conecta a maquina
+
+# 3. MENU > BIG DATA > DATAPROC;  Ativa ele
+# MENU > ARMAZENAMENTO > CLOUD STORAGE; Cria um bucket (lugar para se jogar os dados)
+# Agora acessa o Dataproc; pode ir na lupa de pesquisa e digitar 'dataproc'
+# clicar na aba 'Criar um Cluster', deixa tudo padrão mesmo, exceto em COMPONENTES, clicar em 'Ativar gateway de componente'
+# selecione os 'componentes opcionais': Zeppeling Notebook; ZooKeeper; Jupyter Notebook.
+# nos Workes colocar 3 (pq ele quis);
+
+# Mandando um job para o Cluster (esse q ele vai mandar é encontrar o valor de PI (?))
+# Vai em: DATAPROC > JOBS > enviar JOB
+# tipo de job: Spark
+# Classe principal ou jar: org.apache.spark.examples.SparkPi
+# Arquivo jar: file:///usr/lib/spark/examples/jars/spark-examples.jar
+# Argumentos: 1000
+
+# daria p fazer esses mesmo comando pelo terminal (cloud shell) q seria:
+# $ gcloud dataproc jobs submit spark \
+# --cluster=cluster-desafio-dataproc \
+# --region="us-centrall" \
+# --class=org.apache.spark.examples.SparkPi \
+# --jars=file://usr/lib/spark/examples/jars/spark-examples.jar \
+# -- 1000
+
+# Etapa 4: Workload do Desafio
+# https://github.com/marcelomarques05/dio-desafio-dataproc.git
+# abre o Cloud Shell e digita: $ git clone https://github.com/marcelomarques05/dio-desafio-dataproc
+# $ cd dio-desafio-dataproc/
+# $ gsutil ls
+# $ vim contador.py
+# em "words = sc.textFile("gs://({SEU_BUCKET}/livro.txt")...
+# substituir por: "words = sc.textFile("gs://desafio-dataproc/livro.txt")...
+# fazer mesma coisa em: wordCounts.saveAsTextFile("gs://desafio-dataproc/resultadO")
+# digita: :wq!
+# $ gsutil cp contador.py livro.txt gs://desafio-dataproc
+# vai em JOB > Enviar Job; ID do job*: job-desafio
+# Cluster*: cluster-desafio-dataproc
+# Tipo de Job*: PySpark
+# Arquivo Python principal*: gs://desafio-dataproc/contador.py
+
+# MENU > CLOUD STORAGE; os dois arquivos vao está lá:  _SUCCESS e part-0000
+ 
